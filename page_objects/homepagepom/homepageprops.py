@@ -11,3 +11,11 @@ class HomePageProps(HomePageLocators):
     def login_icon(self):
         return self.driver.find_element(*HomePageLocators.LOGIN_ICON)
 
+    @property
+    def search_input_filed(self):
+        return self.driver.find_element(*HomePageLocators.SEARCH_INPUT_FILED)
+
+    @property
+    def item_card(self):
+        return self.driver.find_elements(*HomePageLocators.ITEM_CARD)
+
