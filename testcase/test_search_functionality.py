@@ -1,7 +1,7 @@
 import logging
 import time
 
-from page_objects.homepagepom.homepagepage import HomePagePage
+from page_objects.navbarpom.navbar import NavBar
 from page_objects.searchresultpom.searchresultpage import SearchResultPage
 from setup.basetest import BaseTest
 
@@ -10,7 +10,7 @@ class TestSearchFunctionality(BaseTest):
 
     def test_search_item(self):
         search_key='lip balm'
-        home = HomePagePage(self.driver)
+        home = NavBar(self.driver)
         item=SearchResultPage(self.driver)
 
         self.open_url("https://jeevee.com")
@@ -25,11 +25,11 @@ class TestSearchFunctionality(BaseTest):
 
         for product in name:
             lower_name = product.lower()
-            assert ("lip" in lower_name or "balm" in lower_name), \
-                f"Irrelevant product found: {product}"
-            # making it dynamic
-            # assert any(word in lower_name for word in keyword_parts), \
+            # assert ("lip" in lower_name or "balm" in lower_name), \
             #     f"Irrelevant product found: {product}"
+            # making it dynamic
+            assert any(word in lower_name for word in keyword_parts), \
+                f"Irrelevant product found: {product}"
 
         print(f"\nAll products are relevant to '{search_key}'")
 
@@ -45,7 +45,7 @@ class TestSearchFunctionality(BaseTest):
 
     def test_search_invalid_item(self):
         search_key = 'aqxfv'
-        home = HomePagePage(self.driver)
+        home = NavBar(self.driver)
         item = SearchResultPage(self.driver)
 
         self.open_url("https://jeevee.com")

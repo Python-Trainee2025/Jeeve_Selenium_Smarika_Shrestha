@@ -1,7 +1,7 @@
 import logging
 import time
 
-from page_objects.homepagepom.homepagepage import HomePagePage
+from page_objects.navbarpom.navbar import NavBar
 from page_objects.loginpom.loginpage import LoginPage
 from setup.basetest import BaseTest
 
@@ -9,7 +9,7 @@ class TestUserAuthentication(BaseTest):
 
 
     def test_login_with_correct_credentials(self):
-        home=HomePagePage(self.driver)
+        home=NavBar(self.driver)
         login=LoginPage(self.driver)
 
         self.open_url("https://jeevee.com")
@@ -22,7 +22,7 @@ class TestUserAuthentication(BaseTest):
         logging.info(f"Successful login message: {login_message}")
 
     def test_login_with_incorrect_credentials(self):
-        home = HomePagePage(self.driver)
+        home = NavBar(self.driver)
         login = LoginPage(self.driver)
 
         self.open_url("https://jeevee.com")

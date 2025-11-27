@@ -3,6 +3,9 @@ import logging
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
+from page_objects.navbarpom.navbar import NavBar
+from page_objects.loginpom.loginpage import LoginPage
+
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s: %(message)s')
 logger = logging.getLogger(__name__)
 # logger.info("Logger initialized for test_logs")
@@ -30,6 +33,13 @@ class BaseTest:
 
     def teardown_method(self):
         self.driver.quit()
+
+    def login_user(self):
+        home=NavBar(self.driver)
+        login=LoginPage(self.driver)
+        self.open_url('https://jeevee.com')
+        home.open_login_page()
+        login.login(mobile_number='9804917782',password='Smarika@123')
 
     def open_url(self, url):
         self.driver.get(url)

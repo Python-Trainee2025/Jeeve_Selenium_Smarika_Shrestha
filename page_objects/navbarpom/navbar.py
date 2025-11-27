@@ -1,9 +1,9 @@
 from selenium.webdriver import Keys
 
-from page_objects.homepagepom.homepageprops import HomePageProps
+from page_objects.navbarpom.navbarprops import NavBarProps
 
 
-class HomePagePage(HomePageProps):
+class NavBar(NavBarProps):
 
     def __init__(self, driver):
         self.driver = driver

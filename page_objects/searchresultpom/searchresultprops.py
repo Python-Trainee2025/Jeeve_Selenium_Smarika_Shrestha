@@ -25,6 +25,13 @@ class SearchResultProps(SearchResultLocator):
             EC.presence_of_element_located(SearchResultLocator.INVALID_ITEM_MESSAGE)
         )
 
+    @property
+    def searched_product(self):
+        wait = WebDriverWait(self.driver, 5)
+        return wait.until(
+            EC.presence_of_element_located(SearchResultLocator.PRODUCT)
+        )
+
 
 
 
