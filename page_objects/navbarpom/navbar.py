@@ -16,5 +16,8 @@ class NavBar(NavBarProps):
         self.search_input_filed.send_keys(input_text)
         self.search_input_filed.send_keys(Keys.ENTER)
 
+    def open_cart_page(self):
+        self.cart_icon.click()
+
 
 

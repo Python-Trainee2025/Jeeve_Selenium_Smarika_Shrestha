@@ -27,7 +27,7 @@ class SearchResultProps(SearchResultLocator):
 
     @property
     def searched_product(self):
-        wait = WebDriverWait(self.driver, 5)
+        wait = WebDriverWait(self.driver, 8)
         return wait.until(
             EC.presence_of_element_located(SearchResultLocator.PRODUCT)
         )

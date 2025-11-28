@@ -19,3 +19,8 @@ class NavBarProps(NavBarLocators):
     # def item_card(self):
     #     return self.driver.find_elements(*NavBarLocators.ITEM_CARD)
 
+    @property
+    def cart_icon(self):
+        return self.driver.find_element(*NavBarLocators.CART_ICON)
+
+

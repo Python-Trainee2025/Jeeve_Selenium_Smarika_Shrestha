@@ -1,10 +1,13 @@
 import logging
+import time
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 from page_objects.navbarpom.navbar import NavBar
 from page_objects.loginpom.loginpage import LoginPage
+from page_objects.productdetailpom.productdetailpage import ProductDetailPage
+from page_objects.searchresultpom.searchresultpage import SearchResultPage
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s: %(message)s')
 logger = logging.getLogger(__name__)
@@ -41,5 +44,20 @@ class BaseTest:
         home.open_login_page()
         login.login(mobile_number='9804917782',password='Smarika@123')
 
+    def add_product_to_cart(self):
+        home=NavBar(self.driver)
+        product=SearchResultPage(self.driver)
+        cart=ProductDetailPage(self.driver)
+
+        self.login_user()
+        home.send_search_input(input_text='lip balm')
+        logging.info('key sent')
+        product.get_product()
+        logging.info('product displayed')
+        cart.add_to_cart()
+        logging.info('Successfully added product to cart')
+
+
     def open_url(self, url):
         self.driver.get(url)
+
