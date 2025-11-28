@@ -31,7 +31,20 @@ class TestSearchFunctionality(BaseTest):
             assert any(word in lower_name for word in keyword_parts), \
                 f"Irrelevant product found: {product}"
 
-        print(f"\nAll products are relevant to '{search_key}'")
+        logging.info(f"\nAll products are relevant to '{search_key}'")
+
+    def test_search_invalid_item(self):
+        search_key = 'aqxfv'
+        home = NavBar(self.driver)
+        item = SearchResultPage(self.driver)
+        self.open_url("https://jeevee.com")
+        time.sleep(2)
+
+        home.send_search_input(search_key)
+        time.sleep(2)
+        invalid_item_message=item.get_invalid_item_message()
+        logging.info(invalid_item_message)
+        time.sleep(2)
 
     # def filter_functionality(self):
     #     search_key = 'lip balm'
@@ -42,18 +55,4 @@ class TestSearchFunctionality(BaseTest):
     #
     #     home.send_search_input(search_key)
     #     time.sleep(2)
-
-    def test_search_invalid_item(self):
-        search_key = 'aqxfv'
-        home = NavBar(self.driver)
-        item = SearchResultPage(self.driver)
-
-        self.open_url("https://jeevee.com")
-        time.sleep(2)
-
-        home.send_search_input(search_key)
-        time.sleep(2)
-        invalid_item_message=item.get_invalid_item_message()
-        logging.info(invalid_item_message)
-        time.sleep(2)
 

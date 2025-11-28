@@ -23,3 +23,17 @@ class TestCartPage(BaseTest):
         logging.info(final_qty)
         time.sleep(2)
         assert final_qty  == initial_qty+ 1, f"Expected {initial_qty + 1}, got {final_qty}"
+
+    def test_remove_cart_item(self):
+        navbar=NavBar(self.driver)
+        cart=CartPage(self.driver)
+
+        self.add_product_to_cart()
+        time.sleep(2)
+        logging.info("Adding product to cart")
+        navbar.open_cart_page()
+        logging.info("Open cart")
+        time.sleep(3)
+        # cart.remove_cart_item()
+        # time.sleep(2)
+        # cart.checkout_of_cart()

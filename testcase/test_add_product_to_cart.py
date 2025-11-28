@@ -1,5 +1,7 @@
 import time
 import logging
+
+from page_objects.cartpom.cartpage import CartPage
 from page_objects.navbarpom.navbar import NavBar
 from page_objects.productdetailpom.productdetailpage import ProductDetailPage
 from page_objects.searchresultpom.searchresultpage import SearchResultPage
@@ -12,6 +14,7 @@ class TestAddProductToCart(BaseTest):
         home=NavBar(self.driver)
         product=SearchResultPage(self.driver)
         cart=ProductDetailPage(self.driver)
+        checkout=CartPage(self.driver)
 
         self.login_user()
         time.sleep(5)
@@ -24,5 +27,6 @@ class TestAddProductToCart(BaseTest):
         # logging.info(toast_message)
         home.open_cart_page()
         time.sleep(5)
+
 
 

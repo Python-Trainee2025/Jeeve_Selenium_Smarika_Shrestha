@@ -7,7 +7,7 @@ class ProductDetailProps(ProductDetailLocators):
 
     @property
     def add_to_cart_button(self):
-        wait = WebDriverWait(self.driver, 5)
+        wait = WebDriverWait(self.driver, 8)
         return wait.until(
             EC.presence_of_element_located(ProductDetailLocators.ADD_TO_CART_BUTTON)
         )

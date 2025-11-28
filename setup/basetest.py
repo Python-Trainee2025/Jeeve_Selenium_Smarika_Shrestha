@@ -3,7 +3,6 @@ import time
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-
 from page_objects.navbarpom.navbar import NavBar
 from page_objects.loginpom.loginpage import LoginPage
 from page_objects.productdetailpom.productdetailpage import ProductDetailPage

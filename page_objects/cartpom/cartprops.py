@@ -19,3 +19,19 @@ class CartProps(CartLocators):
             EC.presence_of_element_located(CartLocators.CART_QUANTITY)
         )
 
+    @property
+    def remove_item_button(self):
+        wait = WebDriverWait(self.driver, 10)
+        return wait.until(EC.element_to_be_clickable(CartLocators.REMOVE_ITEM_BUTTON))
+
+    @property
+    def checkout_button(self):
+        wait = WebDriverWait(self.driver, 10)
+        return wait.until(EC.presence_of_element_located(CartLocators.CHECKOUT_BUTTON))
+
+
+
+
+
+
+
