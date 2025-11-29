@@ -1,0 +1,2 @@
+add logging to the tests so that the reports have clearer info
+xpath can be optimized but so far everything else looks good
