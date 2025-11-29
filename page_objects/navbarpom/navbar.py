@@ -19,5 +19,8 @@ class NavBar(NavBarProps):
     def open_cart_page(self):
         self.cart_icon.click()
 
+    def clear_search_input(self):
+        self.search_input_filed.clear()
+
 
 

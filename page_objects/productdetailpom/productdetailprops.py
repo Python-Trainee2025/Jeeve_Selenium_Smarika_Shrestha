@@ -19,3 +19,11 @@ class ProductDetailProps(ProductDetailLocators):
         return wait.until(
             EC.presence_of_element_located(*ProductDetailLocators.ADDED_TO_CART_TOAST)
         )
+
+    @property
+    def stock_identifier(self):
+        wait = WebDriverWait(self.driver, 5)
+        return wait.until(
+                EC.presence_of_element_located(ProductDetailLocators.STOCK_IDENTIFIER)
+            )
+

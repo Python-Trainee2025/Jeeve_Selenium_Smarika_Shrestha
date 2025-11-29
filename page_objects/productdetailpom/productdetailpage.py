@@ -17,3 +17,10 @@ class ProductDetailPage(ProductDetailProps):
     def added_to_cart_toast(self):
         toast_message=self.added_to_cart_toast.text
         return toast_message
+
+    def stock_info(self):
+        stock_message=self.stock_identifier.text
+        return stock_message
+
+    def identify_enabled_status(self):
+        return self.add_to_cart_button.is_enabled()

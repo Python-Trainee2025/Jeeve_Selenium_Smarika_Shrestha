@@ -19,6 +19,7 @@ class TestUserAuthentication(BaseTest):
         time.sleep(2)
         login.login(mobile_number='9804917782',password='Smarika@123')
         login_message=login.correct_credentials()
+        # assert "Login success" in login_message, f"Expected success message, got: {login_message}"
         logging.info(f"Successful login message: {login_message}")
 
     def test_login_with_incorrect_credentials(self):
@@ -30,8 +31,9 @@ class TestUserAuthentication(BaseTest):
 
         home.open_login_page()
         time.sleep(2)
-        login.login(mobile_number='9804917783', password='Smarika@123')
+        login.login(mobile_number='9804917782', password='wdsfd')
         login_message = login.incorrect_credentials()
+        assert "Username and Password not matching" in login_message, f"Expected success message, got: {login_message}"
         logging.info(f"Invalid Credential message: {login_message}")
 
 

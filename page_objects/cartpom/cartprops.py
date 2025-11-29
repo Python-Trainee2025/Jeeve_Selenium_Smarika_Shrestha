@@ -27,7 +27,13 @@ class CartProps(CartLocators):
     @property
     def checkout_button(self):
         wait = WebDriverWait(self.driver, 10)
-        return wait.until(EC.presence_of_element_located(CartLocators.CHECKOUT_BUTTON))
+        return wait.until(EC.element_to_be_clickable(CartLocators.CHECKOUT_BUTTON))
+
+    @property
+    def added_to_cart_toast(self):
+        wait = WebDriverWait(self.driver, 10)
+        return wait.until(EC.presence_of_element_located(CartLocators.ADDED_TO_CART_TOAST))
+
 
 
 
