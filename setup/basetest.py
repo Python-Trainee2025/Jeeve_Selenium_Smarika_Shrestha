@@ -1,5 +1,6 @@
 import logging
 import time
+import json
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -32,6 +33,11 @@ class BaseTest:
         driver = webdriver.Chrome(options=chrome_options)
         self.driver = driver
         self.driver.maximize_window()
+        # Load credentials
+        creds_path = r"C:\Users\smshrestha\Desktop\Trainee\Jeeve\creds\creds.json"
+
+        with open(creds_path, "r") as f:
+            self.creds = json.load(f)
 
     def teardown_method(self):
         self.driver.quit()
@@ -39,9 +45,12 @@ class BaseTest:
     def login_user(self):
         home=NavBar(self.driver)
         login=LoginPage(self.driver)
-        self.open_url('https://jeevee.com')
+        baseurl=self.creds['baseurl']
+        self.open_url(baseurl)
         home.open_login_page()
-        login.login(mobile_number='9804917782',password='Smarika@123')
+        mobile_number=self.creds['valid_mobile_number']
+        password=self.creds['valid_password']
+        login.login(mobile_number=mobile_number,password=password)
 
     def add_product_to_cart(self):
         home=NavBar(self.driver)

@@ -1,0 +1,9 @@
+{
+  "base_url": "https://jeevee.com",
+  "valid_mobile_number": "9849956051",
+  "valid_password": "Jeevee@123",
+  "invalid_mobile_number": "9849956051",
+  "invalid_password": "qwer",
+  "product_detail_page_url": "https://jeevee.com/products/dr-jk-sunscreen-lotion-s-p-f-50-200-ml-8978"
+
+}

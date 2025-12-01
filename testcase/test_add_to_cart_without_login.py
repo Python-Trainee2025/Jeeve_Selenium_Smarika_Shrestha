@@ -1,4 +1,5 @@
 import time
+import logging
 
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -16,13 +17,17 @@ class TestAddToCartWithoutLogin(BaseTest):
         product = SearchResultPage(self.driver)
         cart = ProductDetailPage(self.driver)
 
-        self.open_url('https://jeevee.com')
+        baseurl=self.creds['base_url']
+        self.open_url(baseurl)
         home.send_search_input(input_text='lip balm')
+        logging.info("Item searched")
         time.sleep(5)
 
         product.get_product()
+        logging.info("Searched item displayed")
         time.sleep(5)
         cart.add_to_cart()
+        logging.info("Add to Cart Button clicked")
         time.sleep(5)
 
         login_popup = WebDriverWait(self.driver, 10).until(

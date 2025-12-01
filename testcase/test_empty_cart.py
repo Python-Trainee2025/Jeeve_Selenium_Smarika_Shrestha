@@ -11,8 +11,10 @@ class TestEmptyCart(BaseTest):
         cart_obj=CartPage(self.driver)
 
         self.login_user()
+        logging.info('Login Successful')
         time.sleep(3)
         nav_obj.open_cart_page()
+        logging.info('Cart page opened')
         empty_cart_message=cart_obj.check_empty_cart()
         logging.info(empty_cart_message)
         time.sleep(5)

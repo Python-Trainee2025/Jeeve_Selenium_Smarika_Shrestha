@@ -12,15 +12,15 @@ class TestSearchFunctionality(BaseTest):
         search_key='lip balm'
         home = NavBar(self.driver)
         item=SearchResultPage(self.driver)
-
-        self.open_url("https://jeevee.com")
+        baseurl=self.creds['base_url']
+        self.open_url(baseurl)
         time.sleep(2)
-
+        logging.info("Jeevee Site Opened")
         home.send_search_input(search_key)
+        logging.info("Search key entered")
         time.sleep(2)
         name=item.get_all_product_names()
-        logging.info(name)
-
+        logging.info(f'The items in the search page {name}')
         keyword_parts=search_key.lower().split(" ")
 
         for product in name:
@@ -37,10 +37,12 @@ class TestSearchFunctionality(BaseTest):
         search_key = 'aqxfv'
         home = NavBar(self.driver)
         item = SearchResultPage(self.driver)
-        self.open_url("https://jeevee.com")
+        baseurl = self.creds['base_url']
+        self.open_url(baseurl)
+        logging.info("Jeevee Site Opened")
         time.sleep(2)
-
         home.send_search_input(search_key)
+        logging.info("Search key entered")
         time.sleep(2)
         invalid_item_message=item.get_invalid_item_message()
         logging.info(invalid_item_message)
