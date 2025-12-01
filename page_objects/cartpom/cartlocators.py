@@ -6,5 +6,7 @@ class CartLocators:
     REMOVE_ITEM_BUTTON=(By.XPATH, "//button[contains(@class,'cursor-pointer') and .//svg]")
     CHECKOUT_BUTTON=(By.XPATH,"//button[contains(text(),'Checkout')]")
     ADDED_TO_CART_TOAST=(By.XPATH,"//div[@role='alert']//div[text()='Added to the cart successfully']")
+    EMPTY_CART=(By.XPATH,"//p[contains(text(),'no items') or contains(text(),'empty')]")
+    DECREASE_QUANTITY_BUTTON= (By.XPATH,"//div[contains(@class,'space-x-3')]/div[1][contains(@class,'rounded-full')]")
 
 

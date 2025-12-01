@@ -12,8 +12,8 @@ class NavBarProps(NavBarLocators):
         return self.driver.find_element(*NavBarLocators.LOGIN_ICON)
 
     @property
-    def search_input_filed(self):
-        return self.driver.find_element(*NavBarLocators.SEARCH_INPUT_FILED)
+    def search_input_field(self):
+        return self.driver.find_element(*NavBarLocators.SEARCH_INPUT_FIElD)
 
     # @property
     # def item_card(self):

@@ -6,7 +6,7 @@ class SearchResultProps(SearchResultLocator):
 
     @property
     def item_card(self):
-        wait = WebDriverWait(self.driver, 5)
+        wait = WebDriverWait(self.driver, 8)
         return wait.until(
             EC.presence_of_all_elements_located(SearchResultLocator.ITEM_CARD)
         )

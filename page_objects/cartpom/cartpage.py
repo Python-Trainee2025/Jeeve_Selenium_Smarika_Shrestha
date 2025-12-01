@@ -14,6 +14,9 @@ class CartPage(CartProps):
     def increase_item_quantity(self):
             self.increase_quantity.click()
 
+    def decrease_item_quantity(self):
+            self.decrease_quantity.click()
+
     def read_cart_quantity(self):
             return self.cart_quantity.text
 
@@ -24,6 +27,9 @@ class CartPage(CartProps):
         toast_message = self.added_to_cart_toast.text
         return toast_message
 
+    def check_empty_cart(self):
+        empty_message = self.empty_cart.text
+        return empty_message
 
 
     def click_checkout_button(self, timeout=10):
@@ -44,4 +50,13 @@ class CartPage(CartProps):
         logging.info("Checkout button clicked successfully")
 
 
+    def check_checkout_button(self, timeout=10):
 
+        wait = WebDriverWait(self.driver, timeout)
+
+        try:
+            el = wait.until(EC.presence_of_element_located(CartLocators.CHECKOUT_BUTTON))
+        except TimeoutException:
+            raise TimeoutException("Checkout button not found in DOM")
+
+        return el.is_enabled()

@@ -13,14 +13,14 @@ class NavBar(NavBarProps):
         self.login_icon.click()
 
     def send_search_input(self, input_text):
-        self.search_input_filed.send_keys(input_text)
-        self.search_input_filed.send_keys(Keys.ENTER)
+        self.search_input_field.send_keys(input_text)
+        self.search_input_field.send_keys(Keys.ENTER)
 
     def open_cart_page(self):
         self.cart_icon.click()
 
     def clear_search_input(self):
-        self.search_input_filed.clear()
+        self.search_input_field.clear()
 
 
 

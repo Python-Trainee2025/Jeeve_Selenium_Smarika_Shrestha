@@ -13,6 +13,14 @@ class CartProps(CartLocators):
         )
 
     @property
+    def decrease_quantity(self):
+        wait = WebDriverWait(self.driver, 5)
+        return wait.until(
+            EC.presence_of_element_located(CartLocators.DECREASE_QUANTITY_BUTTON)
+        )
+
+
+    @property
     def cart_quantity(self):
         wait = WebDriverWait(self.driver, 5)
         return wait.until(
@@ -33,6 +41,11 @@ class CartProps(CartLocators):
     def added_to_cart_toast(self):
         wait = WebDriverWait(self.driver, 10)
         return wait.until(EC.presence_of_element_located(CartLocators.ADDED_TO_CART_TOAST))
+
+    @property
+    def empty_cart(self):
+        wait = WebDriverWait(self.driver, 10)
+        return wait.until(EC.presence_of_element_located(CartLocators.EMPTY_CART))
 
 
 
