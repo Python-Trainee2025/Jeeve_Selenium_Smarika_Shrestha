@@ -28,9 +28,20 @@ class CartProps(CartLocators):
         )
 
     @property
+    def remove_item_cross_button(self):
+        wait = WebDriverWait(self.driver, 10)
+        return wait.until(EC.element_to_be_clickable(CartLocators.REMOVE_ITEM_CROSS_BUTTON))
+
+    @property
     def remove_item_button(self):
         wait = WebDriverWait(self.driver, 10)
         return wait.until(EC.element_to_be_clickable(CartLocators.REMOVE_ITEM_BUTTON))
+
+    @property
+    def remove_item_toast(self):
+        wait = WebDriverWait(self.driver, 10)
+        return wait.until(EC.element_to_be_clickable(CartLocators.REMOVE_ITEM_TOAST))
+
 
     @property
     def checkout_button(self):
@@ -47,10 +58,20 @@ class CartProps(CartLocators):
         wait = WebDriverWait(self.driver, 10)
         return wait.until(EC.presence_of_element_located(CartLocators.EMPTY_CART))
 
+    @property
+    def grand_total(self):
+        wait = WebDriverWait(self.driver, 10)
+        return wait.until(EC.presence_of_element_located(CartLocators.GRAND_TOTAL))
 
+    @property
+    def price_per_item(self):
+        wait = WebDriverWait(self.driver, 10)
+        return wait.until(EC.presence_of_element_located(CartLocators.PRICE_PER_ITEM))
 
-
-
+    @property
+    def cart_item_title(self):
+        wait = WebDriverWait(self.driver, 10)
+        return wait.until(EC.visibility_of_all_elements_located(CartLocators.CART_ITEM_TITLE))
 
 
 

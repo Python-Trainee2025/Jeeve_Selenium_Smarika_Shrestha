@@ -45,7 +45,7 @@ class BaseTest:
     def login_user(self):
         home=NavBar(self.driver)
         login=LoginPage(self.driver)
-        baseurl=self.creds['baseurl']
+        baseurl=self.creds['base_url']
         self.open_url(baseurl)
         home.open_login_page()
         mobile_number=self.creds['valid_mobile_number']

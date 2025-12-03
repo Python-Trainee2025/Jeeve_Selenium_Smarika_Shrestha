@@ -6,6 +6,13 @@ from page_objects.productdetailpom.productdetaillocators import ProductDetailLoc
 class ProductDetailProps(ProductDetailLocators):
 
     @property
+    def product_homepage(self):
+        wait = WebDriverWait(self.driver, 8)
+        return wait.until(
+            EC.presence_of_element_located(ProductDetailLocators.PRODUCT_HOMEPAGE)
+        )
+
+    @property
     def add_to_cart_button(self):
         wait = WebDriverWait(self.driver, 8)
         return wait.until(

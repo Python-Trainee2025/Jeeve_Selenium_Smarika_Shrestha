@@ -1,16 +1,27 @@
 import logging
 import time
 
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+from page_objects.navbarpom import navbar
 from page_objects.navbarpom.navbar import NavBar
 from setup.basetest import BaseTest
 from page_objects.cartpom.cartpage import CartPage
-from selenium.webdriver.common.by import By
+
 
 
 
 class TestCartPage(BaseTest):
+
+    def list_cart_items(self):
+        navbar_obj = NavBar(self.driver)
+        cart_obj = CartPage(self.driver)
+
+        self.add_product_to_cart()
+        logging.info("Product added to cart successfully")
+        time.sleep(2)
+        navbar_obj.open_cart_page()
+        logging.info("Cart page opened")
+        title = cart_obj.get_cart_item_title()
+        logging.info(f"Title: {title}")
 
     def test_cart_increase_quantity(self):
         navbar=NavBar(self.driver)
@@ -31,45 +42,55 @@ class TestCartPage(BaseTest):
         time.sleep(2)
         assert final_qty  == initial_qty+ 1, f"Expected {initial_qty + 1}, got {final_qty}"
 
-    # def test_remove_cart_item(self):
-    #     navbar=NavBar(self.driver)
-    #     cart=CartPage(self.driver)
-    #
-    #     self.add_product_to_cart()
-    #     time.sleep(2)
-    #     logging.info("Adding product to cart")
-    #     navbar.open_cart_page()
-    #     logging.info("Open cart")
-    #
-    #     WebDriverWait(self.driver, 10).until(
-    #         EC.visibility_of_element_located(
-    #             (By.XPATH, "//div[contains(@class,'flex') and contains(@class,'space-x-2')]"))
-    #     )
-    #     cart.remove_cart_item()
-    #     cart.remove_cart_item()
-    #     time.sleep(2)
-        # cart.checkout_of_cart()
+    def test_change_reflected_in_price_when_quantity_increased(self):
+        navbar = NavBar(self.driver)
+        cart = CartPage(self.driver)
 
-    # def test_remove_product_from_cart(self):
-    #     navbar=NavBar(self.driver)
-    #     cart=CartPage(self.driver)
-    #
-    #     self.add_product_to_cart()
-    #     time.sleep(2)
-    #     logging.info("Adding product to cart")
-    #     navbar.open_cart_page()
-    #     logging.info("Open cart")
-    #     product = WebDriverWait(self.driver, 2).until(
-    #         EC.presence_of_element_located((By.XPATH,
-    #                                         '//div[contains(@class,\'flex space-x-2 justify-between items-start\')]//span[contains(@class,\'select-none text-lg leading-none flex items-center justify-center\')]//*[name()=\'svg\']'))
-    #
-    #     )
-    #     product.click()
-    #
-    #     ok_button = WebDriverWait(self.driver, 10).until(
-    #         EC.presence_of_element_located((By.XPATH,
-    #                                         '//div[contains(@class,\'translate-y-0 modal relative w-full pointer-events-none transition-all duration- transform\')]//button[contains(@class,\'flex-1\')][normalize-space()=\'Ok\']')))
-    #     ok_button.click()
-    #     time.sleep(5)
-    #
-    #
+        self.add_product_to_cart()
+        logging.info("Product added to cart successfully")
+        time.sleep(2)
+        navbar.open_cart_page()
+        logging.info("Cart page opened")
+        time.sleep(5)
+        logging.info(cart.get_price_per_item())
+        price_per_piece = cart.get_price_per_item()
+        item_price = price_per_piece.split()[-1]
+        logging.info(f"Price per Item:{item_price}")
+        ini_grand_total=cart.get_grand_total()
+        initial_grand_total=ini_grand_total.split()[-1]
+        logging.info(f"Grand Total before quantity increment:{initial_grand_total}")
+        cart.increase_item_quantity()
+        logging.info("Cart quantity increased")
+        f_grand_total = cart.get_grand_total()
+        final_grand_total = f_grand_total.split()[-1]
+        logging.info(f"Grand Total after quantity increment:{final_grand_total}")
+        assert float(final_grand_total) == float(initial_grand_total) + float(item_price), f"Expected {ini_grand_total + item_price}, got {final_grand_total}"
+
+
+    def test_remove_item_from_cart(self):
+        navbar_obj = NavBar(self.driver)
+        cart_obj=CartPage(self.driver)
+
+        self.add_product_to_cart()
+        logging.info("Product added to cart successfully")
+        time.sleep(2)
+        navbar_obj.open_cart_page()
+        logging.info("Cart page opened")
+        title_before_removal=cart_obj.get_cart_item_title()
+        logging.info(f"Items before removal: {title_before_removal}")
+        removed_item=title_before_removal[0]
+        logging.info(f"Removed item: {removed_item}")
+        cart_obj.remove_cart_item()
+        logging.info("Item removed from cart successfully")
+        time.sleep(2)
+        remove_toast=cart_obj.remove_item_message()
+        logging.info(remove_toast)
+        time.sleep(2)
+        title_after_removal=cart_obj.get_cart_item_title()
+        logging.info(f"Item after removal: {title_after_removal}")
+        time.sleep(2)
+        assert removed_item not in title_after_removal
+
+
+
+

@@ -21,7 +21,12 @@ class CartPage(CartProps):
             return self.cart_quantity.text
 
     def remove_cart_item(self):
+        self.remove_item_cross_button.click()
         self.remove_item_button.click()
+
+    def remove_item_message(self):
+        remove_message=self.remove_item_toast.text
+        return remove_message
 
     def get_added_to_cart_toast(self):
         toast_message = self.added_to_cart_toast.text
@@ -31,6 +36,19 @@ class CartPage(CartProps):
         empty_message = self.empty_cart.text
         return empty_message
 
+    def get_price_per_item(self):
+        price_per_item = self.price_per_item.text
+        return price_per_item
+
+    # def get_cart_item_title(self):
+    #     titles=self.cart_item_title()
+    #     for title in titles:
+    #         logging.info(title.text)
+
+    def get_cart_item_title(self):
+        titles = self.cart_item_title
+        title_list=[title.text for title in titles]
+        return title_list
 
     def click_checkout_button(self, timeout=10):
 
@@ -60,3 +78,23 @@ class CartPage(CartProps):
             raise TimeoutException("Checkout button not found in DOM")
 
         return el.is_enabled()
+
+    def get_grand_total(self, timeout=10):
+        wait = WebDriverWait(self.driver, timeout)
+
+        try:
+            el = wait.until(EC.presence_of_element_located(CartLocators.GRAND_TOTAL))
+        except TimeoutException:
+            raise TimeoutException("Grand Total element not found in DOM")
+
+        # logging.info("Grand Total element present")
+
+        self.driver.execute_script("arguments[0].scrollIntoView({block: 'center', inline: 'nearest'});", el)
+        time.sleep(2)  # Let layout/animations settle
+        logging.info("Scrolled Grand Total into view")
+
+        grand_total_text = el.text
+        # logging.info(f"Grand Total text: {grand_total_text}")
+
+        return grand_total_text
+

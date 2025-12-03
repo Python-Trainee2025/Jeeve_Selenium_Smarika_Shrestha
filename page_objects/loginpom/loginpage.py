@@ -21,3 +21,9 @@ class LoginPage(LoginProps):
     def incorrect_credentials(self):
         login_error_text= self.login_error_message.text
         return login_error_text
+
+    def clear_mobile_number_fields(self):
+        self.mobile_number_filed.clear()
+
+    def clear_password_fields(self):
+        self.password_field.clear()

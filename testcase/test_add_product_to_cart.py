@@ -26,6 +26,8 @@ class TestAddProductToCart(BaseTest):
         product_obj.add_to_cart()
         logging.info("Added Item to Cart")
         time.sleep(5)
+        # navbar_obj.open_cart_page()
+        # cart_obj.remove_cart_item()
         message = cart_obj.get_added_to_cart_toast()
         assert "Added to the cart successfully" in message, f"Expected success message, got: {message}"
         logging.info("Added to the cart successfully")

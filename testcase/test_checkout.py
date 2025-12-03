@@ -17,7 +17,7 @@ class TestCheckout(BaseTest):
         time.sleep(2)
         navbar.open_cart_page()
         logging.info("CartPage opened")
-        time.sleep(3)
+        time.sleep(5)
         cart.click_checkout_button()
         logging.info("Checkout button clicked")
         time.sleep(10)
