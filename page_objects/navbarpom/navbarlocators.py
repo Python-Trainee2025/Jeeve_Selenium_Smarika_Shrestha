@@ -10,4 +10,3 @@ class NavBarLocators:
     USER_ICON = (By.XPATH, "//div[contains(@class, 'user_greetings__')]")
 
     LOGIN_ICON= (By.XPATH, "//div[contains(@class, 'cursor-pointer')]//div[text()='Login']/..")
-

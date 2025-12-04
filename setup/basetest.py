@@ -1,7 +1,6 @@
 import logging
 import time
 import json
-
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from page_objects.navbarpom.navbar import NavBar
@@ -12,6 +11,7 @@ from page_objects.searchresultpom.searchresultpage import SearchResultPage
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s: %(message)s')
 logger = logging.getLogger(__name__)
 # logger.info("Logger initialized for test_logs")
+
 class BaseTest:
     def setup_method(self):
         chrome_options = Options()

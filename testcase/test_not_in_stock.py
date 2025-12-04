@@ -9,8 +9,9 @@ class TestCaseNotInStock(BaseTest):
     def test_not_in_stock(self):
         product_obj=ProductDetailPage(self.driver)
 
-        product_url=self.creds['product_detail_page_url']
-        self.open_url(product_url)
+        product_url_instock=self.creds['product_detail_page_url_instock']
+        product_url_outstock=self.creds['product_detail_page_url_outofstock']
+        self.open_url(product_url_outstock)
         logging.info('Product page opened ')
         time.sleep(3)
         stock_info=product_obj.stock_info()
